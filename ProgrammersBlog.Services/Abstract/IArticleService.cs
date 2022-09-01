@@ -12,8 +12,8 @@ namespace ProgrammersBlog.Services.Abstract
     public interface IArticleService
     {
         Task<IDataResult<ArticleDto>> Get(int articleId);
-        Task<IDataResult<ArticleListDto>> GetAll(); //Tüm katagoriler gelir
-        Task<IDataResult<ArticleListDto>> GetAllByNonDeleted(); //Silinmemiş bütün kategoriler gelir.
+        Task<IDataResult<ArticleListDto>> GetAll(); //Tüm makaleleri gelir
+        Task<IDataResult<ArticleListDto>> GetAllByNonDeleted(); //Silinmemiş bütün makaleleri gelir.
         Task<IDataResult<ArticleListDto>> GetAllByNonDeletedAndActive();
         Task<IDataResult<ArticleListDto>> GetAllByCategory(int categoryId);
         Task<IResult> Add(ArticleAddDto articleAddDto, string createdByName);

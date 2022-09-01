@@ -11,7 +11,7 @@ namespace ProgrammersBlog.Shared.Utilities.Results.Abstract
     {  //ResultStatus veri tipi ConplexType klasöründe tanımlandı.
         public ResultStatus ResultStatus { get;} //Şu şekilde kullanılacak : ResultStatus.Success veya ResultStatus.Error
         public string Message { get;}
-        public Exception Exception{ get;}
+        public Exception Exception { get; }
 
     }
 }

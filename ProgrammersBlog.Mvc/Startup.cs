@@ -25,6 +25,7 @@ namespace ProgrammersBlog.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddRazorPages(); //Kursta burasý yok!
+            services.AddControllersWithViews(); //MVC Uygulamasý olarak çalýþmasýný söyler. 
             services.LoadMyServices(); //Artýk uygulama ayaða kalkýnca burada çaðýrdýðýmýz merhodlar çaðýrýlacaktýr.
         }
 
@@ -34,6 +35,7 @@ namespace ProgrammersBlog.Mvc
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();//Sitemiz de olmayan bir view'a gitmek istediðimiz de 404 not found gelecektir.
             }
             else
             {
@@ -43,7 +45,7 @@ namespace ProgrammersBlog.Mvc
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); //
 
             app.UseRouting();
 
@@ -51,7 +53,7 @@ namespace ProgrammersBlog.Mvc
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapDefaultControllerRoute(); //Varsayýlan olarak home controller ve Index'e gidecektir.
             });
         }
     }

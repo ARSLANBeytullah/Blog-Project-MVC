@@ -11,7 +11,7 @@ namespace ProgrammersBlog.Shared.Utilities.Results.Concrete
     public class Result : IResult
     {
         public Result(ResultStatus resultStatus)
-        {
+        {   
             ResultStatus = resultStatus;
         }
         public Result(ResultStatus resultStatus, string message) //Mesela "Makale başarılı bir şekilde eklenmiştir" diye bir mesajın dönmesini istiyorsak bu constructor'a ihtiyaç duyuyoruz.

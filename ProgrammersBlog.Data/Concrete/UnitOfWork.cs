@@ -12,7 +12,7 @@ namespace ProgrammersBlog.Data.Concrete
     
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ProgrammersBlogContext _context;
+        private readonly ProgrammersBlogContext _context; //_context bizim veritabanımız olmuş oldu.
         private EfArticleRepository _articleRepository;
         private EfCategoryRepository _categoryRepository;
         private EfCommentRepository _commentRepository;
@@ -34,7 +34,7 @@ namespace ProgrammersBlog.Data.Concrete
 
         public IUserRepository Users => _userRepository ?? new EfUserRepository(_context);
 
-        public async ValueTask DisposeAsync() //Burada Context'imizi dispose ediyor olacağız.
+        public async ValueTask DisposeAsync() //Burada Context'imizi dispose ediyoruz.
         {
             await _context.DisposeAsync();
         }

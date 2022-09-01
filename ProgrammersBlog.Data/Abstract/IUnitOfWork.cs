@@ -8,7 +8,7 @@ namespace ProgrammersBlog.Data.Abstract
 {
     public interface IUnitOfWork:IAsyncDisposable //Unit Of Work yapısı sayesin de bütün repositorylerimizi tek bir noktada yönetme imkanımız olacak.
     {
-        IArticleRepository Articles { get; } // unitofwork.Articles diyerek makalemize erişebiliyor olacağız.
+        IArticleRepository Articles { get; } // unitofwork.Articles diyerek makale repositorimize erişebiliyor olacağız.
         ICategoryRepository Categories { get; }
         ICommentRepository Comments { get; }
         IRoleRepository Roles { get; }

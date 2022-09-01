@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProgrammersBlog.Shared.Utilities.Results.Concrete
 {
-    public class DataResult<T> : IDataResult<T>
+    public class DataResult<T> : IDataResult<T> 
     {
-        public DataResult(ResultStatus resultStatus,T data)
+        public DataResult(ResultStatus resultStatus,T data) //DataResult class'ın da ki constructer methodların hepsin de parametre olarak data geçmelidir. Çünkü sınıfın DataResult'dır. Result sınıfın da ise data söz konusu değildir.
         {
             ResultStatus = resultStatus;
             Data = data;

@@ -16,6 +16,7 @@ namespace ProgrammersBlog.Services.Concrete
 {
     public class ArticleManager : IArticleService
     {
+        //Global değişkenleri _ ile başlayarak tanımla(Solid)
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
