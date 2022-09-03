@@ -5,10 +5,10 @@
 }
 @if (Model.ResultStatus == ProgrammersBlog.Shared.Utilities.Results.ComplexTypes.ResultStatus.Success)
 {
-    <div class="card mb-4">
+    <div class="card mb-4 mt-2">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
-            DataTable Example
+            Kategoriler
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -63,11 +63,68 @@
         </div>
     </div>
 }
-@section Scripts
-{
-    <script>
-        $(document).ready(function () {
-            $('#categoriesTable').DataTable();
-        });
-    </script>
+@if (Model.ResultStatus == ProgrammersBlog.Shared.Utilities.Results.ComplexTypes.ResultStatus.Error)
+{ 
+    <div class="alert alert-danger">
+        @Model.Message<br />
+        Dashboard sayfasına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
+    </div>
 }
+    @section Scripts
+{
+        <script>
+            $(document).ready(function () {
+                $('#categoriesTable').DataTable({
+                    dom:
+                        "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                    buttons: [
+                        {
+                            text: 'Ekle',
+                            className: 'btn btn-success',
+                            action: function (e, dt, node, config) {
+                                alert('Ekle Butnona Basıldı.');
+                            }
+                        },
+
+                        {
+                            text: 'Yenile',
+                            className: 'btn btn-warning',
+                            action: function (e, dt, node, config) {
+                                alert('Yenile Butonuna Basıldı.');
+                            }
+                        }
+                    ],
+                    language: {
+                        "emptyTable": "Tabloda herhangi bir veri mevcut değil",
+                        "info": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                        "infoEmpty": "Kayıt yok",
+                        "infoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+                        "infoThousands": ".",
+                        "lengthMenu": "Sayfada _MENU_ kayıt göster",
+                        "loadingRecords": "Yükleniyor...",
+                        "processing": "İşleniyor...",
+                        "search": "Ara:",
+                        "zeroRecords": "Eşleşen kayıt bulunamadı",
+                        "paginate": {
+                            "first": "İlk",
+                            "last": "Son",
+                            "next": "Sonraki",
+                            "previous": "Önceki"
+                        },
+                        "aria": {
+                            "sortAscending": ": artan sütun sıralamasını aktifleştir",
+                            "sortDescending": ": azalan sütun sıralamasını aktifleştir"
+                        },
+                        "select": {
+                            "rows": {
+                                "_": "%d kayıt seçildi",
+                                "1": "1 kayıt seçildi"
+                            }
+                        }
+                    }
+                });
+            });
+        </script>
+    }
