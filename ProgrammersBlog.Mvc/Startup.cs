@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProgrammersBlog.Services.AutoMapper.Profiles;
 using ProgrammersBlog.Services.Extensions;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace ProgrammersBlog.Mvc
             //services.AddRazorPages(); //Kursta burasý yok!
             services.AddControllersWithViews().AddRazorRuntimeCompilation(); //MVC Uygulamasý olarak çalýþmasýný söyler. AddRazorRuntimeCompilation sayesin de front-end tarafýn da anlýk olarak deðiþiklikleri görebileceðiz.
             services.LoadMyServices(); //Artýk uygulama ayaða kalkýnca burada çaðýrdýðýmýz merhodlar çaðýrýlacaktýr.
-            services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(typeof(CategoryProfile),typeof(ArticleProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
