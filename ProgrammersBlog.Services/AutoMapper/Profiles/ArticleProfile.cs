@@ -12,9 +12,9 @@ namespace ProgrammersBlog.Services.AutoMapper.Profiles
     public class ArticleProfile : Profile
     {
         public ArticleProfile()
-        {
+        {   //ArticleAddDto nesnesin de CreatedDate alanı olmadığından dolayı ForMember kullanıldı ve bu değer dışarıdan verilmiş oldu.
             CreateMap<ArticleAddDto, Article>().ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(x => DateTime.Now));
-            CreateMap<ArticleUpdateDto, Article>().ForMember(dest => dest.ModifiedDate, opt => opt.MapFrom(x => DateTime.Now));
+            CreateMap<ArticleUpdateDto, Article>() .ForMember(dest => dest.ModifiedDate, opt => opt.MapFrom(x => DateTime.Now));
 
         }
     }

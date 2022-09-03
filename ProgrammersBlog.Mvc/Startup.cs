@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,8 +26,9 @@ namespace ProgrammersBlog.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddRazorPages(); //Kursta burasý yok!
-            services.AddControllersWithViews(); //MVC Uygulamasý olarak çalýþmasýný söyler. 
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); //MVC Uygulamasý olarak çalýþmasýný söyler. AddRazorRuntimeCompilation sayesin de front-end tarafýn da anlýk olarak deðiþiklikleri görebileceðiz.
             services.LoadMyServices(); //Artýk uygulama ayaða kalkýnca burada çaðýrdýðýmýz merhodlar çaðýrýlacaktýr.
+            services.AddAutoMapper(typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,7 +47,7 @@ namespace ProgrammersBlog.Mvc
             }
 
             app.UseHttpsRedirection();
-            app.UseStaticFiles(); //
+            app.UseStaticFiles(); //resim dosyalarý,css dosyalarý,hs dosyalarý 
 
             app.UseRouting();
 
@@ -53,6 +55,11 @@ namespace ProgrammersBlog.Mvc
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute( //Birden fazla Area kullanýlacaksa MapControllerRoute içerisin de tanýmlamammýz gerekir.
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}"
+                    );
                 endpoints.MapDefaultControllerRoute(); //Varsayýlan olarak home controller ve Index'e gidecektir.
             });
         }

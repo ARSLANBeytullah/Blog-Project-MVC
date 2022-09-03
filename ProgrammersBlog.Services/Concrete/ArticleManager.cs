@@ -42,7 +42,7 @@ namespace ProgrammersBlog.Services.Concrete
             if (result)
             {
                 var article = await _unitOfWork.Articles.GetAsync(a => a.Id == articleId);
-                article.IsDeleted = false;
+                article.IsDeleted = true;
                 article.ModifiedByName = modifiedByName;
                 article.ModifiedDate = DateTime.Now;
                 await _unitOfWork.Articles.UpdateAsync(article).ContinueWith(t=>_unitOfWork.SaveAsync());
