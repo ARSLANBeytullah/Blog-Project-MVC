@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace ProgrammersBlog.Mvc.Area.Admin.Controllers
 {
     [Area("Admin")]
-
     public class HomeController : Controller
     {
         public IActionResult Index()
