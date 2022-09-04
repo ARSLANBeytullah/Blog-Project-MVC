@@ -10,6 +10,7 @@ using ProgrammersBlog.Services.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace ProgrammersBlog.Mvc
@@ -27,7 +28,11 @@ namespace ProgrammersBlog.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddRazorPages(); //Kursta burasý yok!
-            services.AddControllersWithViews().AddRazorRuntimeCompilation(); //MVC Uygulamasý olarak çalýþmasýný söyler. AddRazorRuntimeCompilation sayesin de front-end tarafýn da anlýk olarak deðiþiklikleri görebileceðiz.
+            services.AddControllersWithViews().AddRazorRuntimeCompilation().AddJsonOptions(opt =>  //MVC Uygulamasý olarak çalýþmasýný söyler. AddRazorRuntimeCompilation sayesin de front-end tarafýn da anlýk olarak deðiþiklikleri görebileceðiz.
+            {
+                opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            }); 
             services.LoadMyServices(); //Artýk uygulama ayaða kalkýnca burada çaðýrdýðýmýz merhodlar çaðýrýlacaktýr.
             services.AddAutoMapper(typeof(CategoryProfile),typeof(ArticleProfile));
         }
